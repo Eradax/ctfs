@@ -7,7 +7,7 @@ ALPHABET_LEN: int = 26
 ALPHABET_FIRST_CHAR: str = 'a'
 
 def cesar_shift(char: str, length: int):
-    isUpper: bool = char.isupper
+    isUpper: bool = char.isupper()
 
     norm_int: int = ord(char.lower()) - ord(ALPHABET_FIRST_CHAR)
     shifted_int: int = (norm_int + length) % ALPHABET_LEN
