@@ -1,0 +1,3 @@
+The decrypted text is:
+FCSC{5bb0780f8af31f69b4eccf18870f493628f135045add3036f35a4e3a423976d6}
+
