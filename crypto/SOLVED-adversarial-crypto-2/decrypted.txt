@@ -1,0 +1,2 @@
+The decrypted string is:
+FCSC{0224e979da8a6069869ccfc040abb680ffd35e3ba61bcc0e0683662c33fa81c0}
