@@ -1,0 +1,3 @@
+The decrypted string is:
+ECSC{d7e080292d95f131e07241a98dc6c1aa10279889}
+
