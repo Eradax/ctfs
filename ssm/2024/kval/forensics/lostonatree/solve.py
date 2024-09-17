@@ -3,7 +3,8 @@
 # xor: tuple[int]
 # flag_bits: tuple[str]
 
-with open("./tree.txt", "r") as f:
+with open("./tree.txt", "r") as f: 
+    # d, x, f = (tuple(eval(f.readline()))for _ in 3*" ")
     degrees = eval(f"tuple({f.readline()})")
     xor = eval(f"tuple({f.readline()})")
     flag_bits = eval(f"tuple({f.readline()})")
