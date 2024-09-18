@@ -9,10 +9,7 @@ r = pwn.remote("188.126.67.132", 50015)
 e = pwn.ELF("./service")
 
 passwd: str
-passwd = ""
-
-while (e.read(e.symbols["password"]+len(passwd), 1)) != b'\x00':
-    passwd += e.read(e.symbols["password"]+len(passwd), 1).decode()
+passwd = e.string(e.symbols["password"]).decode().strip()
 
 # print(f"{passwd = }")
 
