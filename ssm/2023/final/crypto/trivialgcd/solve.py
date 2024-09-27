@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import math
 from Crypto.Util.number import long_to_bytes
+
+#NOTE: This program takes roughly two hours to run
 """
 c1 + p*q*k = m**e1
 c2 + p*r*j = m**e2
@@ -61,6 +63,15 @@ O(max(c2**a * m**b - c1**c, c1**x * m**y - c2**z))
 O(max(m**(a + b) - m**c, m**(x + y) - m**z))
 
 Help me!!!
+
+----
+
+Q: What the hell are you doing here?!
+A: To solve this problem we will first symbolicly make the exponents of `m`
+smaller, we do this by some clever multiplication and applying properties of
+gcd. The tradeoff for decreasing the exponent of `m` is increasing the other
+exponents. To solve this we estimate the timecomplexity of the gcd and look if
+the next iteration is slower, then we stop.
 """
 
 def ct(a: int, b: int, c: int, x: int, y: int, z: int) -> int:
@@ -105,12 +116,12 @@ while nxt <= curr or first:
     z = nz
     curr = nxt
 
-    print(f"{curr, nxt = }")
-    print(f"{a, b, c = }")
-    print(f"{x, y, z = }")
+    # print(f"{curr, nxt = }")
+    # print(f"{a, b, c = }")
+    # print(f"{x, y, z = }")
 
     if y >= b:
-        print("y")
+        # print("y")
         na = a
         nb = b
         nc = c
@@ -119,7 +130,7 @@ while nxt <= curr or first:
         ny = y - b
         nz = z + a
     elif y < b:
-        print("b")
+        # print("b")
         na = a + z
         nb = b - y
         nc = c + x
@@ -130,9 +141,10 @@ while nxt <= curr or first:
 
     nxt = ct(na, nb, nc, nx, ny, nz)
 
-print(f"{curr, nxt = }")
-print(f"{a, b, c = }")
-print(f"{x, y, z = }")
+# print("--------------")
+# print(f"{curr, nxt = }")
+# print(f"{a, b, c = }")
+# print(f"{x, y, z = }")
 
 g1: int
 g2: int
