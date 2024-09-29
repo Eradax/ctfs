@@ -131,21 +131,6 @@ flipl = runCalcFlipl (mkStdGen 420) scrambledTree
 ---
 
 munscramble :: Tree a -> Int -> (Tree a, Int)
-{-
-munscramble x i =
-  trace ("i: " ++ show i) (
-  let r = flipl!!i
-  in if leaf x
-     then (x, i+1)
-     else if r == One
-          then let (ar, ni) = munscramble (left x) (i + 1)
-                   (al, ai) = munscramble (right x) ni
-               in (Node al ar, ai)
-          else let (ar, ni) = munscramble (right x) (i + 1)
-                   (al, ai) = munscramble (left x) ni
-               in (Node al ar, ai)
-  )
--}
 munscramble x i =
   let r = flipl!!i in
   trace ("r: " ++ show (r == One) ++ " i: " ++ show i) (
@@ -158,19 +143,13 @@ munscramble x i =
     in (Node al ar, ai)
     )
 
-
-
-
-
 munscrambleTree :: (Eq a) => Tree a -> (Tree a)
 munscrambleTree t = fst (munscramble t 0)
 
 ---
 
 tree :: Tree Char
--- tree = undefined -- FIXME: We lost the tree :(
 tree = munscrambleTree scrambledTree
--- tree = Node (Node (Leaf 'd') (Leaf 'c')) (Node (Leaf 'a') (Leaf 'b'))
 
 splitOn :: Char -> String -> (String, String)
 splitOn c [] = ("", "")
@@ -179,20 +158,6 @@ splitOn c xs = (takeWhile (/= c) xs, drop 1 $ dropWhile (/= c) xs)
 main :: IO ()
 main = do
   let r = mkStdGen 420
-
-  {-
-  putStrLn $ "flipl: " ++ bitStringToString flipl
-  putStrLn $ "ll: " ++ [fromJust (val (left (left tree)))]
-  putStrLn $ "lr: " ++ [fromJust (val (right (left tree)))]
-  putStrLn $ "rl: " ++ [fromJust (val (left (right tree)))]
-  putStrLn $ "rr: " ++ [fromJust (val (right (right tree)))]
-
-  putStrLn $ "ll: " ++ [fromJust (val (left (left scrambledTree)))]
-  putStrLn $ "lr: " ++ [fromJust (val (right (left scrambledTree)))]
-  putStrLn $ "rl: " ++ [fromJust (val (left (right scrambledTree)))]
-  putStrLn $ "rr: " ++ [fromJust (val (right (right scrambledTree)))]
-  -}
-
 
   if fst (scrambleTree r tree) /= scrambledTree then
     die "Not the correct tree!"
